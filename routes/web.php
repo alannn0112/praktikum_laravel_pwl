@@ -27,10 +27,12 @@ Route::get('/surat-masuk/{id}', function ($id) {
     return 'Detail surat masuk dengan ID:' .$id;
 })->name('surat-masuk.show');*/
 
-route::get('/surat-masuk', [SuratMasukController::class, 'index'])
+/*route::get('/surat-masuk', [SuratMasukController::class, 'index'])
     ->name('surat-masuk.index');
 route::get('/surat-masuk/{id}', [SuratMasukController::class, 'show'])
-    ->name('surat-masuk.show');
+    ->name('surat-masuk.show');*/
+route::resource('surat-masuk', SuratMasukController::class)
+    ->parameters(['surat-masuk' => 'id']);
 
 route::get('/surat-keluar', [SuratKeluarController::class, 'index'])
     ->name('surat-keluar.index');
