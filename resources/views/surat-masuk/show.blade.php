@@ -3,63 +3,98 @@
 @section('title', 'Detail Surat Masuk')
 
 @section('content')
-<div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <!-- Header Bagian Atas -->
-    <div class="flex justify-between items-center mb-6">
-        <div>
-            <h1 class="text-2xl font-bold text-slate-800">Detail Surat Masuk</h1>
-            <p class="text-sm text-slate-500 mt-1">Informasi lengkap arsip surat masuk digital.</p>
-        </div>
-        <a href="{{ route('surat-masuk.index') }}" 
-           class="inline-flex items-center px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-medium rounded-lg transition duration-200">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-            </svg>
-            Kembali
-        </a>
-    </div>
+<div class="bg-slate-50 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 sm:p-8">
 
-    <!-- Kartu Konten Utama -->
-    <div class="bg-white shadow-md rounded-xl border border-slate-200 overflow-hidden">
-        <div class="p-6 sm:p-8 space-y-6">
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Nomor Surat -->
-                <div class="border-b border-slate-100 pb-4">
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Nomor Surat</span>
-                    <span class="mt-1 text-base font-medium text-slate-800">{{ $surat->nomor_surat }}</span>
-                </div>
-
-                <!-- Tanggal -->
-                <div class="border-b border-slate-100 pb-4">
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Tanggal Surat</span>
-                    <span class="mt-1 text-base font-medium text-slate-800">{{ $surat->tanggal }}</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Pengirim -->
-                <div class="border-b border-slate-100 pb-4">
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Pengirim</span>
-                    <span class="mt-1 text-base font-medium text-slate-800">{{ $surat->pengirim }}</span>
-                </div>
-
-                <!-- Perihal -->
-                <div class="border-b border-slate-100 pb-4">
-                    <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Perihal</span>
-                    <span class="mt-1 text-base font-semibold text-blue-600">{{ $surat->perihal }}</span>
-                </div>
-            </div>
-
-            <!-- Keterangan -->
+        <div class="mb-6 pb-4 border-b border-slate-100 flex justify-between items-center">
             <div>
-                <span class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Keterangan</span>
-                <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 text-slate-700 text-sm leading-relaxed">
-                    {{ $surat->keterangan ?? 'Tidak ada keterangan tambahan.' }}
+                <h1 class="text-2xl font-bold text-slate-900">Detail Surat Masuk</h1>
+                <p class="text-sm text-slate-500 mt-1">Informasi lengkap arsip surat</p>
+            </div>
+            <span class="bg-emerald-50 text-emerald-600 font-semibold px-3 py-1 rounded-full text-xs">
+                Arsip Masuk
+            </span>
+        </div>
+
+        <div class="space-y-6">
+
+            {{-- Nomor Surat --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nomor Surat</span>
+                <span class="sm:col-span-2 font-semibold text-slate-800">
+                    {{ $surat->nomor_surat }}
+                </span>
+            </div>
+
+            {{-- Tanggal Surat --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tanggal Surat</span>
+                <span class="sm:col-span-2 text-slate-800">
+                    {{ $surat->tanggal }}
+                </span>
+            </div>
+
+            {{-- Pengirim --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pengirim</span>
+                <span class="sm:col-span-2 text-slate-800">
+                    {{ $surat->pengirim }}
+                </span>
+            </div>
+
+            {{-- Perihal --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Perihal</span>
+                <span class="sm:col-span-2 text-slate-800">
+                    {{ $surat->perihal }}
+                </span>
+            </div>
+
+            {{-- Kategori --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Kategori</span>
+                <span class="sm:col-span-2 text-slate-800">
+                    {{ $surat->category?->nama ?? 'Tanpa kategori' }}
+                </span>
+            </div>
+
+            {{-- Keterangan --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Keterangan</span>
+                <span class="sm:col-span-2 text-slate-800">
+                    {{ $surat->keterangan ?? '-' }}
+                </span>
+            </div>
+
+            {{-- Lampiran --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-slate-50 rounded-xl">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Lampiran</span>
+
+                <div class="sm:col-span-2">
+                    @if($surat->lampiran)
+                        <a href="{{ asset('storage/' . $surat->lampiran) }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline font-semibold">
+                            <span>📎</span>
+                            Lihat / Unduh Lampiran
+                        </a>
+                    @else
+                        <span class="text-slate-400">Tidak ada lampiran</span>
+                    @endif
                 </div>
             </div>
 
         </div>
+
+        {{-- Tombol Kembali --}}
+        <div class="mt-8 pt-4 border-t border-slate-100 flex items-center gap-4">
+            <a href="{{ route('surat-masuk.index') }}"
+               class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition">
+                ← Kembali ke Daftar Surat
+            </a>
+        </div>
+
     </div>
 </div>
 @endsection
